@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Ремонти</title>
+</head>
+<body>
+    <a class="btn btn-outline-secondary" href="/" style="margin-left: 50px;">На головну</a>
+    <h1 class="text-center">Список клієнтів</h1>
+    <div class="table-responsive">
+        <table class="table table-primary table-hover table-sm">
+            <tr>
+                <th>Код ремонта</th>
+                <th>Код заявки</th>
+                <th>Дата початку</th>
+                <th>Дата кінця</th>
+                <th>Назва ремонту</th>
+                <th>Опис</th>
+            </tr>
+            <% for (var i = 0; i < Repair.length; i++) { %>
+
+            <tr>
+                <td><%= Repair[i].ID_repair %></td>
+                <td><%= Repair[i].ID_app %></td>
+                <td><%= Repair[i].DateBegin %></td>
+                <td><%= Repair[i].DateEnd %></td>
+                <td><%= Repair[i].Name_repair %></td>
+                <td><%= Repair[i].Description %></td>
+
+                <td style="background-color: white;">
+                    <a class="btn btn-danger" href="/api/repair/delete/<%= Repair[i].ID_repair %>">Видалити</a>
+                </td>
+                <td style="background-color: white;">
+                    <a class="btn btn-info" href="/api/repair/<%= Repair[i].ID_repair %>">Редагувати</a>
+                </td>
+            </tr>
+            <% } %>
+        </table>
+    </div>
+
+    <h2 class="text-center">Додати ремонт</h2>
+    <form action="repair" method="POST" class="text-center">
+        <div class="mb-3">
+            <label>
+                Код заявки
+                <input type="number" class="form-control" placeholder="Код заявки" id="ID_app" name="ID_app">
+            </label>
+            <label>
+                Дата початку
+                <input type="date" class="form-control" placeholder="Дата початку" id="DateBegin" name="DateBegin">
+            </label>
+            <label>
+                Дата кінця
+                <input type="date" class="form-control" placeholder="Дата кінця" id="DateEnd" name="DateEnd">
+            </label>
+            <label>
+                Назва ремонту
+                <input type="text" class="form-control" placeholder="Назва ремонту" id="Name_repair" name="Name_repair">
+            </label>
+            <label>
+                Опис
+                <input type="text" class="form-control" placeholder="Опис" id="Description" name="Description">
+            </label>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Додати</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-MrcW6ZMFYlz...twltaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

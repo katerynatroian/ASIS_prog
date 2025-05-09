@@ -3,7 +3,8 @@ const Repair = require('../model/repair.model');
 exports.findALL = function (req, res) {
     Repair.findAll(function(err, repair) {
         if (err) res.send(err);
-        res.send(repair);
+        //res.send(repair);
+        res.render('repair.ejs', {Repair: repair});
     });
 };
 
@@ -15,7 +16,7 @@ exports.create = function (req, res) {
         Repair.create(new_repair, function (err, repair) {
             if (err)
                 res.send(err);
-            res.json({error: false, message:'Repair is created', data: repair})
+            res.redirect('/api/repair')
         });
     }
 };
@@ -24,10 +25,8 @@ exports.findById = function (req, res) {
     Repair.findById(req.params.id, function (err, repair) {
         if (err) 
             res.send(err);
-        res.json(repair);
-        if (!repair) {
-            return res.status(404).send({ message: 'Repair not found' });
-        }
+        //res.json(repair);
+        res.render('repair_edit.ejs', {Repair: repair});
     });
 };
 
@@ -38,7 +37,8 @@ exports.update = function (req, res) {
         Repair.update(req.params.id, new Repair(req.body), function (err, repair){
             if (err) 
                 res.send(err);
-            res.json({error: false, message: 'Repair was successfully updated'});
+            //res.json({error: false, message: 'Repair was successfully updated'});
+            res.redirect('/api/repair')
         });
     }
 };
@@ -48,6 +48,6 @@ exports.delete = function (req, res) {
     Repair.delete(req.params.id, function (err, repair) {
         if (err)
             res.send(err);
-        res.json({error: false, message: 'Repair was successfully deleted'});
+        res.redirect('/api/repair');
     });
 }

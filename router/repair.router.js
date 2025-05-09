@@ -4,6 +4,6 @@ const RepairController = require('../controller/repair.controller');
 router.get('/', RepairController.findALL);
 router.post('/', RepairController.create);
 router.get('/:id', RepairController.findById);
-router.put('/:id', RepairController.update);
-router.delete('/:id', RepairController.delete);
+router.post('/put/:id', RepairController.update);
+router.get('/delete/:id', RepairController.delete);
 module.exports = router

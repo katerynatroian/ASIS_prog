@@ -1,0 +1,27 @@
+table {
+    width: 95%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: #f8f9fa;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 10px 15px;
+    text-align: center;
+    border: 1px solid #090909; 
+    vertical-align: middle;
+}
+
+th {
+    background-color: #0d6efd;
+    color: white;
+}
+
+tr:hover {
+    background-color: #e2e6ea;
+}
+
+a.btn {
+    width: 100px;
+}

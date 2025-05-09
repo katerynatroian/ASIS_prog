@@ -3,7 +3,8 @@ const Application = require('../model/application.model');
 exports.findALL = function (req, res) {
     Application.findAll(function(err, application) {
         if (err) res.send(err);
-        res.send(application);
+        //res.send(application);
+        res.render('application.ejs', {Application: application});
     });
 };
 
@@ -15,7 +16,7 @@ exports.create = function (req, res) {
         Application.create(new_application, function (err, application) {
             if (err)
                 res.send(err);
-            res.json({error: false, message:'Application is created', data: application})
+            res.redirect('/api/application')
         });
     }
 };
@@ -24,7 +25,8 @@ exports.findById = function (req, res) {
     Application.findById(req.params.id, function (err, application) {
         if (err) 
             res.send(err);
-        res.json(application);
+        //res.json(application);
+        res.render('application_edit.ejs', {Application: application});
     });
 };
 
@@ -35,7 +37,8 @@ exports.update = function (req, res) {
         Application.update(req.params.id, new Application(req.body), function (err, application){
             if (err) 
                 res.send(err);
-            res.json({error: false, message: 'Application was successfully updated'});
+            //res.json({error: false, message: 'Application was successfully updated'});
+            res.redirect('/api/application')
         });
     }
 };
@@ -45,6 +48,6 @@ exports.delete = function (req, res) {
     Application.delete(req.params.id, function (err, application) {
         if (err)
             res.send(err);
-        res.json({error: false, message: 'Application was successfully deleted'});
+        res.redirect('/api/application');
     });
 }
